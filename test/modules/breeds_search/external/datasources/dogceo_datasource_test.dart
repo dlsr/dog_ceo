@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pet_ceo/modules/breeds_search/domain/erros/erros.dart';
-import 'package:pet_ceo/modules/breeds_search/external/datasources/dogceo_datasource.dart';
-
+import 'package:pet_ceo/modules/breeds/domain/erros/erros.dart';
+import 'package:pet_ceo/modules/breeds/external/datasources/dogceo_datasource.dart';
 import '../../utils/dogceo_response.dart';
 
 class DioMock extends Mock implements Dio {}
