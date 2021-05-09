@@ -10,7 +10,7 @@ abstract class SearchBreeds {
 class SearchBreedsImpl implements SearchBreeds {
   final SearchBreedsRepository repository;
 
-  SearchBreedsImpl({this.repository});
+  SearchBreedsImpl(this.repository);
 
   @override
   Future<Either<FailureSearch, List<ResultBreedsSearch>>> call() {

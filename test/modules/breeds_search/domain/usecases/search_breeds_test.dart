@@ -9,7 +9,7 @@ class SearchRepositoryMock extends Mock implements SearchBreedsRepository {}
 
 main() {
   final repository = SearchRepositoryMock();
-  final usecase = SearchBreedsImpl(repository: repository);
+  final usecase = SearchBreedsImpl(repository);
 
   test('Should return list of ResultSearch', () async {
     when(repository.searchBreeds())
