@@ -13,9 +13,9 @@ class ResultSearchBreedsModel extends ResultBreedsSearch {
     };
   }
 
-  factory ResultSearchBreedsModel.fromMap(Map<String, dynamic> map) {
+  factory ResultSearchBreedsModel.fromMap(String breedName) {
     return ResultSearchBreedsModel(
-      breedName: map['breedName'],
+      breedName: breedName,
     );
   }
 
