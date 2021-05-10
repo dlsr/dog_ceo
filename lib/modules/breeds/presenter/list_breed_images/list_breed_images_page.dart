@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:pet_ceo/modules/breeds/domain/entities/result_list_images.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breed_images/list_breed_images_bloc.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breed_images/states/state.dart';
+import 'package:pet_ceo/modules/breeds/presenter/list_breeds/states/state.dart';
 
 class ListBreedImagesPage extends StatefulWidget {
   final String breedName;
@@ -29,42 +32,41 @@ class _ListBreedImagesPageState
       body: Column(
         children: [
           StreamBuilder(
-              stream: controller.stream,
-              builder: (context, snapshot) {
-                final state = controller.state;
+            stream: controller.stream,
+            builder: (context, snapshot) {
+              final state = controller.state;
 
-                if (state is ListBreedImagesStart) {
-                  return Center(
-                    child: Text("Digite um texto"),
-                  );
-                }
-                if (state is ListBreedImagesError) {
-                  return Center(
-                    child: Text("Houve um erro"),
-                  );
-                }
-
-                if (state is ListBreedImagesLoading) {
-                  return Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
-
-                final list = (state as ListBreedImagesSuccess).list;
+              if (state is ListBreedImagesSuccess) {
+                final list = state.list;
 
                 return Expanded(
-                  child: ListView.builder(
+                  child: LazyLoadScrollView(
+                    onEndOfPage: () => controller.add(widget.breedName),
+                    scrollOffset: 70,
+                    child: ListView.builder(
                       itemCount: list.length,
                       itemBuilder: (_, id) {
                         final item = list[id];
                         return ListTile(
                           title: Image.network(item.imageUrl),
                         );
-                      }),
+                      },
+                    ),
+                  ),
                 );
-              })
+              } else if (state is ListBreedImagesError) {
+                return Center(
+                  child: Text("Houve um erro"),
+                );
+              } else {
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
+          )
         ],
       ),
     );

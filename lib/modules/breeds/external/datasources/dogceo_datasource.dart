@@ -29,7 +29,7 @@ class DogceoDatasource implements BreedsDatasource {
   @override
   Future<List<ResultListImagesModel>> getBreedImages(String breedName) async {
     final response =
-        await dio.get("https://dog.ceo/api/breed/$breedName/images");
+        await dio.get("https://dog.ceo/api/breed/$breedName/images/random/10");
 
     if (response.statusCode == 200) {
       final list = (response.data["message"] as List)
