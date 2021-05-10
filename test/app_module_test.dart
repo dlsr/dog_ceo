@@ -7,8 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:pet_ceo/modules/app_module.dart';
 import 'package:pet_ceo/modules/breeds/domain/entities/result_list_breeds.dart';
 import 'package:pet_ceo/modules/breeds/domain/usecases/list_breeds.dart';
-import 'modules/breeds_search/utils/list_breeds_images_response.dart';
-import 'modules/breeds_search/utils/list_breeds_response.dart';
+import 'modules/breeds/utils/list_breeds_response.dart';
 
 class DioMock extends Mock implements Dio {}
 
