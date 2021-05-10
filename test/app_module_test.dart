@@ -7,7 +7,8 @@ import 'package:mockito/mockito.dart';
 import 'package:pet_ceo/modules/app_module.dart';
 import 'package:pet_ceo/modules/breeds/domain/entities/result_list_breeds.dart';
 import 'package:pet_ceo/modules/breeds/domain/usecases/list_breeds.dart';
-import 'modules/breeds_search/utils/dogceo_response.dart';
+import 'modules/breeds_search/utils/list_breeds_images_response.dart';
+import 'modules/breeds_search/utils/list_breeds_response.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -18,11 +19,11 @@ main() {
   ]);
   test('Should run usecase without error', () {
     final usecase = Modular.get<ListBreeds>();
-    expect(usecase, isA<SearchBreedsImpl>());
+    expect(usecase, isA<ListBreedsImpl>());
   });
   test('Should return a list of ResultBreedsSearch', () async {
     when(dio.get(any)).thenAnswer((_) async =>
-        Response(data: jsonDecode(dogceoResponse), statusCode: 200));
+        Response(data: jsonDecode(listBreedsResponse), statusCode: 200));
 
     final usecase = Modular.get<ListBreeds>();
     final result = await usecase.call();

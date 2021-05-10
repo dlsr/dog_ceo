@@ -5,3 +5,9 @@ class DatasourceError implements FailureSearch {
 
   DatasourceError({this.message});
 }
+
+class InvalidTextError implements FailureSearch {
+  final String message;
+
+  InvalidTextError({this.message});
+}

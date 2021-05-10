@@ -7,10 +7,10 @@ abstract class ListBreeds {
   Future<Either<FailureSearch, List<ResultListBreeds>>> call();
 }
 
-class SearchBreedsImpl implements ListBreeds {
+class ListBreedsImpl implements ListBreeds {
   final BreedsRepository repository;
 
-  SearchBreedsImpl(this.repository);
+  ListBreedsImpl(this.repository);
 
   @override
   Future<Either<FailureSearch, List<ResultListBreeds>>> call() {
