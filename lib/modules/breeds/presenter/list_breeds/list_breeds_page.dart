@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breeds/list_breeds_bloc.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breeds/states/state.dart';
+import 'package:pet_ceo/modules/breeds/presenter/utils/utils.dart';
 
 class ListBreedsPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _ListBreedsPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Raças disponíveis"),
+        title: Text("Raças"),
       ),
       body: Column(
         children: [
@@ -51,20 +52,29 @@ class _ListBreedsPageState
                 final list = (state as ListBreedsSuccess).list;
 
                 return Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
                       itemCount: list.length,
+                      separatorBuilder: (context, index) {
+                        return Divider();
+                      },
                       itemBuilder: (_, id) {
                         final item = list[id];
-                        return ListTile(
-                          title: Text(item.breedName),
-                          onTap: () {
-                            Modular.to.pushNamed(
-                              "/list_breed_images",
-                              arguments: {
-                                "breedName": item.breedName,
-                              },
-                            );
-                          },
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            title: Text(
+                              Utils.capitalize(item.breedName),
+                            ),
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () {
+                              Modular.to.pushNamed(
+                                "/list_breed_images",
+                                arguments: {
+                                  "breedName": item.breedName,
+                                },
+                              );
+                            },
+                          ),
                         );
                       }),
                 );

@@ -12,8 +12,6 @@ class ListBreedImagesBloc extends Bloc<String, ListBreedImagesState> {
 
   @override
   Stream<ListBreedImagesState> mapEventToState(String brandName) async* {
-    yield ListBreedImagesLoading();
-
     final result = await usecase(brandName);
     yield result.fold((l) => ListBreedImagesError(l), (r) {
       if (list.isEmpty) {

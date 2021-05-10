@@ -19,7 +19,6 @@ main() {
     expect(
         bloc.stream,
         emitsInOrder([
-          isA<ListBreedImagesLoading>(),
           isA<ListBreedImagesSuccess>(),
         ]));
 
@@ -31,7 +30,6 @@ main() {
     expect(
         bloc.stream,
         emitsInOrder([
-          isA<ListBreedImagesLoading>(),
           isA<ListBreedImagesError>(),
         ]));
 

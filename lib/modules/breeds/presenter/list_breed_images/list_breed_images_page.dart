@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
-import 'package:pet_ceo/modules/breeds/domain/entities/result_list_images.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breed_images/list_breed_images_bloc.dart';
 import 'package:pet_ceo/modules/breeds/presenter/list_breed_images/states/state.dart';
-import 'package:pet_ceo/modules/breeds/presenter/list_breeds/states/state.dart';
+import 'package:pet_ceo/modules/breeds/presenter/utils/utils.dart';
 
 class ListBreedImagesPage extends StatefulWidget {
   final String breedName;
@@ -27,7 +26,7 @@ class _ListBreedImagesPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.breedName),
+        title: Text(Utils.capitalize(widget.breedName)),
       ),
       body: Column(
         children: [
